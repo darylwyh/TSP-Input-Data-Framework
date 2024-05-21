@@ -1,0 +1,46 @@
+Townsville, -19.2569, 146.8239
+Brisbane, -27.4689, 153.0235
+Darwin, -12.4634, 130.8456
+Adelaide, -34.9282, 138.5999
+Perth, -31.9505, 115.8605
+Wellington, -32.6207, 115.4351
+Albany, -35.0248, 117.8832
+Melbourne, -37.8142, 144.9632
+Victor Harbour, -35.5533, 138.6222
+Ballarat, -37.5623, 143.8607
+Nuriootpa, -34.4670, 138.9939
+Rockhampton, -23.3779, 150.5101
+Bathurst, -33.4197, 149.5775
+Penrith, -33.7580, 150.7086
+Bendigo, -36.7578, 144.2787
+Sydney, -33.8548, 151.2164
+Mount Gambier, -37.8247, 140.7820
+Newcastle, -32.9273, 151.7813
+Gosford, -33.4238, 151.3433
+Canberra, -35.2976, 149.1013
+Port Lincoln, -34.7209, 135.8575
+Port Macquarie, -31.4313, 152.9081
+Warnambool, -38.3829, 142.4849
+Wagga Wagga, -35.1150, 147.3678
+Kalgoorlie, -30.7475, 121.4650
+Albury, -36.0815, 146.9163
+Whyalla, -33.0380, 137.5750
+Alice Springs, -23.6980, 133.8807
+Shepparton, -36.3747, 145.3917
+Tamworth, -31.0982, 150.9298
+Hobart, -42.8825, 147.3281
+Launceston, -41.4298, 147.1571
+Port Augusta, -32.4914, 137.7642
+Bunbury, -33.3256, 115.6396
+Geelong, -38.1499, 144.3617
+Southport, -27.9709, 153.4114
+Mildura, -34.1854, 142.1625
+Coffs Harbour, -30.2963, 153.1131
+Ulverstone, -41.1565, 146.1683
+Armidale, -30.5278, 151.6716
+Orange, -33.2833, 149.1000
+Maroochydore, -26.6550, 153.0900
+Toowoomba, -27.5616, 151.9535
+Cairns, -16.9206, 145.7724
+Lismore, -28.8135, 153.2779
+Dubbo, -32.2439, 148.6094

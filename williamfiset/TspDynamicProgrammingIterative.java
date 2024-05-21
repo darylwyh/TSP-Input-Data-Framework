@@ -9,9 +9,13 @@
 // package com.williamfiset.algorithms.graphtheory;
 package williamfiset;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.HashMap;
 
 public class TspDynamicProgrammingIterative {
 
@@ -190,32 +194,51 @@ public class TspDynamicProgrammingIterative {
     return Math.sqrt(dx * dx + dy * dy);
   }
 
-  // calc distance matrix
-  private static double[][] calculateDistanceMatrix(double[][] coordinates) {
-    int n = coordinates.length;
-    double[][] distanceMatrix = new double[n][n];
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        if (i == j) {
-          distanceMatrix[i][j] = 0; // Distance from a point to itself is 0
-        } else {
-          distanceMatrix[i][j] = calculateEuclidDistance(coordinates[i], coordinates[j]);
+  // Function to read coordinates from file
+  // Function to read coordinates from file
+  private static double[][] readCoordinatesFromFile(String cityFile, String coordinatesFile) {
+    HashMap<String, double[]> cityCoordinates = new HashMap<>();
+    try (BufferedReader br = new BufferedReader(new FileReader(coordinatesFile))) {
+      String line;
+      while ((line = br.readLine()) != null) {
+        String[] parts = line.trim().split(",");
+        String cityName = parts[0].trim();
+        double latitude = Double.parseDouble(parts[1].trim());
+        double longitude = Double.parseDouble(parts[2].trim());
+        cityCoordinates.put(cityName, new double[] { latitude, longitude });
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    try (BufferedReader br = new BufferedReader(new FileReader(cityFile))) {
+      String line;
+      int count = 0;
+      double[][] coordinates = new double[20][2];
+      while ((line = br.readLine()) != null && count < 20) {
+        String[] parts = line.trim().split("\\s+");
+        String city1 = parts[0].replace("+", " ");
+        String city2 = parts[1].replace("+", " ");
+        if (cityCoordinates.containsKey(city1) && cityCoordinates.containsKey(city2)) {
+          coordinates[count] = cityCoordinates.get(city1);
+          count++;
+          if (count >= 20)
+            break;
+          coordinates[count] = cityCoordinates.get(city2);
+          count++;
         }
       }
+      return coordinates;
+    } catch (IOException e) {
+      e.printStackTrace();
+      return null;
     }
-    return distanceMatrix;
   }
 
   public static void main(String[] args) {
 
-    double[][] coordinates = {
-        { 0.41244334, 0.04050879 },
-        { 0.18598835, 0.23698135 },
-        { 0.51845048, -0.45359856 },
-        { -0.07919039, -0.09938872 },
-        { -0.17740187, -0.66163724 },
-        { -0.19554869, -0.66433794 }
-    };
+    // Read coordinates from file
+    double[][] coordinates = readCoordinatesFromFile("ISP data\\weights.intra", "ISP data\\city_coordinates.txt");
 
     // Calculate the number of points
     int n = coordinates.length;
@@ -244,6 +267,23 @@ public class TspDynamicProgrammingIterative {
 
 /*
  * 
+ * 
+ * // calc distance matrix
+ * private static double[][] calculateDistanceMatrix(double[][] coordinates) {
+ * int n = coordinates.length;
+ * double[][] distanceMatrix = new double[n][n];
+ * for (int i = 0; i < n; i++) {
+ * for (int j = 0; j < n; j++) {
+ * if (i == j) {
+ * distanceMatrix[i][j] = 0; // Distance from a point to itself is 0
+ * } else {
+ * distanceMatrix[i][j] = calculateEuclidDistance(coordinates[i],
+ * coordinates[j]);
+ * }
+ * }
+ * }
+ * return distanceMatrix;
+ * }
  * 
  * // Create adjacency matrix
  * int n = 6;

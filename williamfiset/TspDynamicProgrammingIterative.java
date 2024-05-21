@@ -7,7 +7,7 @@
  * @author William Fiset, william.alexandre.fiset@gmail.com
  */
 // package com.williamfiset.algorithms.graphtheory;
-package williamfiset; 
+package williamfiset;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,54 +16,61 @@ import java.util.List;
 public class TspDynamicProgrammingIterative {
 
   private final int N, start;
-  private final double[][] distance; // TODO: distance matrix for ISP data 
-  private List<Integer> tour = new ArrayList<>(); // solution tour 
-  private double minTourCost = Double.POSITIVE_INFINITY; 
+  private final double[][] distance; // TODO: distance matrix for ISP data
+  private List<Integer> tour = new ArrayList<>(); // solution tour
+  private double minTourCost = Double.POSITIVE_INFINITY;
   private boolean ranSolver = false;
 
   public TspDynamicProgrammingIterative(double[][] distance) {
-    this(0, distance); // start with 0 as start node 
+    this(0, distance); // start with 0 as start node
   }
 
   public TspDynamicProgrammingIterative(int start, double[][] distance) {
-    N = distance.length; // row length => distance[0].length 
+    N = distance.length; // row length => distance[0].length
 
-    if (N <= 2) throw new IllegalStateException("N <= 2 not yet supported.");
-    if (N != distance[0].length) throw new IllegalStateException("Matrix must be square (n x n)");
-    if (start < 0 || start >= N) throw new IllegalArgumentException("Invalid start node.");
+    if (N <= 2)
+      throw new IllegalStateException("N <= 2 not yet supported.");
+    if (N != distance[0].length)
+      throw new IllegalStateException("Matrix must be square (n x n)");
+    if (start < 0 || start >= N)
+      throw new IllegalArgumentException("Invalid start node.");
     if (N > 32)
       throw new IllegalArgumentException(
           "Matrix too large! A matrix that size for the DP TSP problem with a time complexity of"
               + "O(n^2*2^n) requires way too much computation for any modern home computer to handle");
 
-    this.start = start; // init start node 
-    this.distance = distance; // init matrix 
+    this.start = start; // init start node
+    this.distance = distance; // init matrix
   }
 
   // Returns the optimal tour for the traveling salesman problem.
   public List<Integer> getTour() {
-    if (!ranSolver) solve();
+    if (!ranSolver)
+      solve();
     return tour;
   }
 
   // Returns the minimal tour cost.
   public double getTourCost() {
-    if (!ranSolver) solve();
+    if (!ranSolver)
+      solve();
     return minTourCost;
   }
 
   // Solves the traveling salesman problem and caches solution.
   public void solve() {
 
-    if (ranSolver) return;
-    // exp: N = 6, END_STATE = 00111111, all cities visited 
-    final int END_STATE = (1 << N) - 1; 
+    if (ranSolver)
+      return;
+    // exp: N = 6, END_STATE = 00111111, all cities visited
+    final int END_STATE = (1 << N) - 1;
     Double[][] memo = new Double[N][1 << N];
- 
+
     // Add all outgoing edges from the starting node to memo table.
-    // Stores all distances in memoization table. As base case. 
+    // Stores all distances in memoization table. As base case.
     for (int end = 0; end < N; end++) {
-      if (end == start) continue; // don't add an edge from a node to itself
+      if (end == start)
+        continue; // don't add an edge from a node to itself
       // both the starting and the destination nodes visited
       memo[end][(1 << start) | (1 << end)] = distance[start][end];
     }
@@ -73,14 +80,17 @@ public class TspDynamicProgrammingIterative {
       // iterates over all combinations of cities with r cities visited out of N
       // subset represents each combination of cities
       for (int subset : combinations(r, N)) {
-        if (notIn(start, subset)) continue; // ensure starting city in subset
+        if (notIn(start, subset))
+          continue; // ensure starting city in subset
         // iterates over all possible cities to move to from the starting city
         for (int next = 0; next < N; next++) {
-          if (next == start || notIn(next, subset)) continue;
+          if (next == start || notIn(next, subset))
+            continue;
           int subsetWithoutNext = subset ^ (1 << next);
           double minDist = Double.POSITIVE_INFINITY;
           for (int end = 0; end < N; end++) {
-            if (end == start || end == next || notIn(end, subset)) continue;
+            if (end == start || end == next || notIn(end, subset))
+              continue;
             double newDistance = memo[end][subsetWithoutNext] + distance[end][next];
             if (newDistance < minDist) {
               minDist = newDistance;
@@ -93,7 +103,8 @@ public class TspDynamicProgrammingIterative {
 
     // Connect tour back to starting node and minimize cost.
     for (int i = 0; i < N; i++) {
-      if (i == start) continue;
+      if (i == start)
+        continue;
       // memo[..]: cost of completing tour from city i to starting city
       double tourCost = memo[i][END_STATE] + distance[i][start];
       if (tourCost < minTourCost) {
@@ -111,7 +122,8 @@ public class TspDynamicProgrammingIterative {
       int bestIndex = -1; // index of best city to visit next
       double bestDist = Double.POSITIVE_INFINITY;
       for (int j = 0; j < N; j++) {
-        if (j == start || notIn(j, state)) continue;
+        if (j == start || notIn(j, state))
+          continue;
         double newDist = memo[j][state] + distance[j][lastIndex];
         if (newDist < bestDist) {
           bestIndex = j;
@@ -121,14 +133,14 @@ public class TspDynamicProgrammingIterative {
 
       tour.add(bestIndex);
       // mark the chosen city as visited by removing it from current state
-      state = state ^ (1 << bestIndex); 
+      state = state ^ (1 << bestIndex);
       lastIndex = bestIndex;
     }
 
     tour.add(start);
     Collections.reverse(tour);
 
-    ranSolver = true; // bool to tell tsp is solved 
+    ranSolver = true; // bool to tell tsp is solved
   }
 
   private static boolean notIn(int elem, int subset) {
@@ -144,13 +156,16 @@ public class TspDynamicProgrammingIterative {
   }
 
   // To find all the combinations of size r we need to recurse until we have
-  // selected r elements (aka r = 0), otherwise if r != 0 then we still need to select
+  // selected r elements (aka r = 0), otherwise if r != 0 then we still need to
+  // select
   // an element which is found after the position of our last selected element
   private static void combinationsHelper(int set, int at, int r, int n, List<Integer> subsets) {
 
-    // Return early if there are more elements left to select than what is available.
+    // Return early if there are more elements left to select than what is
+    // available.
     int elementsLeftToPick = n - at;
-    if (elementsLeftToPick < r) return;
+    if (elementsLeftToPick < r)
+      return;
 
     // We selected 'r' elements so we found a valid subset!
     if (r == 0) {
@@ -168,21 +183,56 @@ public class TspDynamicProgrammingIterative {
     }
   }
 
-  public static void main(String[] args) {
-    // Create adjacency matrix
-    int n = 6;
-    double[][] distanceMatrix = new double[n][n];
-    for (double[] row : distanceMatrix) java.util.Arrays.fill(row, 10000);
-    distanceMatrix[5][0] = 10;
-    distanceMatrix[1][5] = 12;
-    distanceMatrix[4][1] = 2;
-    distanceMatrix[2][4] = 4;
-    distanceMatrix[3][2] = 6;
-    distanceMatrix[0][3] = 8;
+  // calc Euclidean Distance between two points
+  private static double calculateEuclidDistance(double[] point1, double[] point2) {
+    double dx = point1[0] - point2[0];
+    double dy = point1[1] - point2[1];
+    return Math.sqrt(dx * dx + dy * dy);
+  }
 
+  // calc distance matrix
+  private static double[][] calculateDistanceMatrix(double[][] coordinates) {
+    int n = coordinates.length;
+    double[][] distanceMatrix = new double[n][n];
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (i == j) {
+          distanceMatrix[i][j] = 0; // Distance from a point to itself is 0
+        } else {
+          distanceMatrix[i][j] = calculateEuclidDistance(coordinates[i], coordinates[j]);
+        }
+      }
+    }
+    return distanceMatrix;
+  }
+
+  public static void main(String[] args) {
+
+    double[][] coordinates = {
+        { 0.41244334, 0.04050879 },
+        { 0.18598835, 0.23698135 },
+        { 0.51845048, -0.45359856 },
+        { -0.07919039, -0.09938872 },
+        { -0.17740187, -0.66163724 },
+        { -0.19554869, -0.66433794 }
+    };
+
+    // Calculate the number of points
+    int n = coordinates.length;
+
+    // Calculate Euclidean distance matrix
+    double[][] distanceMatrix = new double[n][n];
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (i == j) {
+          distanceMatrix[i][j] = 0; // Distance from a point to itself is 0
+        } else {
+          distanceMatrix[i][j] = calculateEuclidDistance(coordinates[i], coordinates[j]);
+        }
+      }
+    }
     int startNode = 0;
-    TspDynamicProgrammingIterative solver =
-        new TspDynamicProgrammingIterative(startNode, distanceMatrix);
+    TspDynamicProgrammingIterative solver = new TspDynamicProgrammingIterative(startNode, distanceMatrix);
 
     // Prints: [0, 3, 2, 4, 1, 5, 0]
     System.out.println("Tour: " + solver.getTour());
@@ -191,3 +241,21 @@ public class TspDynamicProgrammingIterative {
     System.out.println("Tour cost: " + solver.getTourCost());
   }
 }
+
+/*
+ * 
+ * 
+ * // Create adjacency matrix
+ * int n = 6;
+ * double[][] distanceMatrix = new double[n][n];
+ * for (double[] row : distanceMatrix)
+ * java.util.Arrays.fill(row, 10000);
+ * distanceMatrix[5][0] = 10;
+ * distanceMatrix[1][5] = 12;
+ * distanceMatrix[4][1] = 2;
+ * distanceMatrix[2][4] = 4;
+ * distanceMatrix[3][2] = 6;
+ * distanceMatrix[0][3] = 8;
+ * 
+ * 
+ */

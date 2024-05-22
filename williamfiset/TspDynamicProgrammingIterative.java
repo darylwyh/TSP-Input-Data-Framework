@@ -10,12 +10,17 @@
 package williamfiset;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class TspDynamicProgrammingIterative {
 
@@ -214,21 +219,32 @@ public class TspDynamicProgrammingIterative {
     // Read from weights.intra file
     try (BufferedReader br = new BufferedReader(new FileReader(cityFile))) {
       String line;
-      int count = 0;
-      double[][] coordinates = new double[20][2];
-      while ((line = br.readLine()) != null && count < 20) {
+      Set<String> uniqueCoordinates = new HashSet<>(); // Set to store unique coordinates
+      List<double[]> uniqueCoordinatesList = new ArrayList<>(); // List to store unique coordinates in order
+      while ((line = br.readLine()) != null && uniqueCoordinates.size() < 20) {
         String[] parts = line.trim().split("\\s+");
         String city1 = parts[0].replaceAll("\\+", " ").split(",")[0].trim();
         String city2 = parts[1].replaceAll("\\+", " ").split(",")[0].trim();
 
         if (cityCoordinates.containsKey(city1) && cityCoordinates.containsKey(city2)) {
-          coordinates[count] = cityCoordinates.get(city1);
-          count++;
-          if (count >= 20)
-            break;
-          coordinates[count] = cityCoordinates.get(city2);
-          count++;
+          double[] coord1 = cityCoordinates.get(city1);
+          double[] coord2 = cityCoordinates.get(city2);
+          String coordinateString1 = Arrays.toString(coord1);
+          String coordinateString2 = Arrays.toString(coord2);
+          if (!uniqueCoordinates.contains(coordinateString1)) {
+            uniqueCoordinates.add(coordinateString1);
+            uniqueCoordinatesList.add(coord1);
+          }
+          if (!uniqueCoordinates.contains(coordinateString2)) {
+            uniqueCoordinates.add(coordinateString2);
+            uniqueCoordinatesList.add(coord2);
+          }
         }
+      }
+      // Convert List to array
+      double[][] coordinates = new double[uniqueCoordinatesList.size()][2];
+      for (int i = 0; i < uniqueCoordinatesList.size(); i++) {
+        coordinates[i] = uniqueCoordinatesList.get(i);
       }
       return coordinates;
     } catch (IOException e) {
@@ -267,35 +283,32 @@ public class TspDynamicProgrammingIterative {
     double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE;
     double minLon = Double.MAX_VALUE, maxLon = Double.MIN_VALUE;
     for (double[] coord : coordinates) {
-        minLat = Math.min(minLat, coord[0]);
-        maxLat = Math.max(maxLat, coord[0]);
-        minLon = Math.min(minLon, coord[1]);
-        maxLon = Math.max(maxLon, coord[1]);
+      minLat = Math.min(minLat, coord[0]);
+      maxLat = Math.max(maxLat, coord[0]);
+      minLon = Math.min(minLon, coord[1]);
+      maxLon = Math.max(maxLon, coord[1]);
     }
 
     // Project coordinates and scale to fit within (0, 1)
     double[][] projectedCoordinates = new double[coordinates.length][2];
     for (int i = 0; i < coordinates.length; i++) {
-        double lat = coordinates[i][0];
-        double lon = coordinates[i][1];
+      double lat = coordinates[i][0];
+      double lon = coordinates[i][1];
 
-        // Project latitude and longitude
-        double x = (lon - minLon) / (maxLon - minLon);
-        double y = (lat - minLat) / (maxLat - minLat);
+      // Project latitude and longitude
+      double x = (lon - minLon) / (maxLon - minLon);
+      double y = (lat - minLat) / (maxLat - minLat);
 
-        // Adjust scaling to fit within (0, 1)
-        double epsilon = 1e-6; // Small positive value
-        x = epsilon + (1 - 2 * epsilon) * x;
-        y = epsilon + (1 - 2 * epsilon) * y;
+      // Adjust scaling to fit within (0, 1)
+      double epsilon = 1e-6; // Small positive value
+      x = epsilon + (1 - 2 * epsilon) * x;
+      y = epsilon + (1 - 2 * epsilon) * y;
 
-        projectedCoordinates[i][0] = x;
-        projectedCoordinates[i][1] = y;
+      projectedCoordinates[i][0] = x;
+      projectedCoordinates[i][1] = y;
     }
     return projectedCoordinates;
-}
-
-
-
+  }
 
   public static void main(String[] args) {
 
@@ -330,6 +343,18 @@ public class TspDynamicProgrammingIterative {
 
     System.out.println("Tour: " + solver.getTour());
     System.out.println("Tour cost: " + solver.getTourCost());
+
+   // Write coordinates to a text file
+   String fileName = "points20_second.txt";
+   try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+       for (int i = 0; i < coordinates.length; i++) {
+           writer.write(String.format("%.6f %.6f", coordinates[i][0], coordinates[i][1]));
+           writer.newLine(); // Move to the next line after writing each coordinate pair
+       }
+       System.out.println("Coordinates have been written to " + fileName);
+   } catch (IOException e) {
+       e.printStackTrace();
+   }
   }
 }
 

@@ -202,6 +202,7 @@ public class TspDynamicProgrammingIterative {
       String line;
       while ((line = br.readLine()) != null) {
         String[] parts = line.trim().split(",");
+
         String cityName = parts[0].trim();
         double latitude = Double.parseDouble(parts[1].trim());
         double longitude = Double.parseDouble(parts[2].trim());
@@ -210,15 +211,16 @@ public class TspDynamicProgrammingIterative {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    // Read from weights.intra file 
+    // Read from weights.intra file
     try (BufferedReader br = new BufferedReader(new FileReader(cityFile))) {
       String line;
       int count = 0;
       double[][] coordinates = new double[20][2];
       while ((line = br.readLine()) != null && count < 20) {
         String[] parts = line.trim().split("\\s+");
-        String city1 = parts[0].replace("+", " ");
-        String city2 = parts[1].replace("+", " ");
+        String city1 = parts[0].replaceAll("\\+", " ").split(",")[0].trim();
+        String city2 = parts[1].replaceAll("\\+", " ").split(",")[0].trim();
+
         if (cityCoordinates.containsKey(city1) && cityCoordinates.containsKey(city2)) {
           coordinates[count] = cityCoordinates.get(city1);
           count++;
@@ -235,13 +237,82 @@ public class TspDynamicProgrammingIterative {
     }
   }
 
+  private static double[][] normalizeCoordinates(double[][] coordinates) {
+    // Find minimum and maximum values of latitude and longitude
+    double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE; // Latitude
+    double minLon = Double.MAX_VALUE, maxLon = Double.MIN_VALUE; // Longitude
+    for (double[] coord : coordinates) {
+      minLat = Math.min(minLat, coord[0]);
+      maxLat = Math.max(maxLat, coord[0]);
+      minLon = Math.min(minLon, coord[1]);
+      maxLon = Math.max(maxLon, coord[1]);
+    }
+
+    // Normalize each coordinate
+    double[][] normalizedCoordinates = new double[coordinates.length][2];
+    for (int i = 0; i < coordinates.length; i++) {
+      double lat = coordinates[i][0];
+      double lon = coordinates[i][1];
+      double normalizedLat = (lat - minLat) / (maxLat - minLat);
+      double normalizedLon = (lon - minLon) / (maxLon - minLon);
+      normalizedCoordinates[i][0] = normalizedLat;
+      normalizedCoordinates[i][1] = normalizedLon;
+    }
+
+    return normalizedCoordinates;
+  }
+
+  private static double[][] equirectangularProjection(double[][] coordinates) {
+    // Find minimum and maximum latitude and longitude
+    double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE;
+    double minLon = Double.MAX_VALUE, maxLon = Double.MIN_VALUE;
+    for (double[] coord : coordinates) {
+        minLat = Math.min(minLat, coord[0]);
+        maxLat = Math.max(maxLat, coord[0]);
+        minLon = Math.min(minLon, coord[1]);
+        maxLon = Math.max(maxLon, coord[1]);
+    }
+
+    // Project coordinates and scale to fit within (0, 1)
+    double[][] projectedCoordinates = new double[coordinates.length][2];
+    for (int i = 0; i < coordinates.length; i++) {
+        double lat = coordinates[i][0];
+        double lon = coordinates[i][1];
+
+        // Project latitude and longitude
+        double x = (lon - minLon) / (maxLon - minLon);
+        double y = (lat - minLat) / (maxLat - minLat);
+
+        // Adjust scaling to fit within (0, 1)
+        double epsilon = 1e-6; // Small positive value
+        x = epsilon + (1 - 2 * epsilon) * x;
+        y = epsilon + (1 - 2 * epsilon) * y;
+
+        projectedCoordinates[i][0] = x;
+        projectedCoordinates[i][1] = y;
+    }
+    return projectedCoordinates;
+}
+
+
+
+
   public static void main(String[] args) {
 
     // Read coordinates from file
     double[][] coordinates = readCoordinatesFromFile("ISP data\\weights.intra", "ISP data\\city_coordinates.txt");
+    // normalize
+    coordinates = equirectangularProjection(coordinates);
 
+    System.out.println("coors: ");
+    for (int j = 0; j < coordinates[0].length; j++) {
+      for (int i = 0; i < coordinates.length; i++) {
+        System.out.println(coordinates[i][j]);
+      }
+    }
     // Calculate the number of points
     int n = coordinates.length;
+    System.out.printf("n is %d ", n);
 
     // Calculate Euclidean distance matrix
     double[][] distanceMatrix = new double[n][n];
@@ -257,10 +328,7 @@ public class TspDynamicProgrammingIterative {
     int startNode = 0;
     TspDynamicProgrammingIterative solver = new TspDynamicProgrammingIterative(startNode, distanceMatrix);
 
-    // Prints: [0, 3, 2, 4, 1, 5, 0]
     System.out.println("Tour: " + solver.getTour());
-
-    // Print: 42.0
     System.out.println("Tour cost: " + solver.getTourCost());
   }
 }
@@ -298,4 +366,27 @@ public class TspDynamicProgrammingIterative {
  * distanceMatrix[0][3] = 8;
  * 
  * 
+ * private static double[][] normalizeCoordinates(double[][] coordinates) {
+ * // Find minimum and maximum values of latitude and longitude
+ * double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE; // Latitude
+ * double minLon = Double.MAX_VALUE, maxLon = Double.MIN_VALUE; // Longtitude
+ * for (double[] coord : coordinates) {
+ * minLat = Math.min(minLat, coord[0]);
+ * maxLat = Math.max(maxLat, coord[0]);
+ * minLon = Math.min(minLon, coord[1]);
+ * maxLon = Math.max(maxLon, coord[1]);
+ * }
+ * 
+ * // Normalize each coordinate
+ * double[][] normalizedCoordinates = new double[coordinates.length][2];
+ * for (int i = 0; i < coordinates.length; i++) {
+ * double lat = coordinates[i][0];
+ * double lon = coordinates[i][1];
+ * double normalizedLat = (lat - minLat) / (maxLat - minLat);
+ * double normalizedLon = (lon - minLon) / (maxLon - minLon);
+ * normalizedCoordinates[i][0] = normalizedLat;
+ * normalizedCoordinates[i][1] = normalizedLon;
+ * }
+ * return normalizedCoordinates;
+ * }
  */

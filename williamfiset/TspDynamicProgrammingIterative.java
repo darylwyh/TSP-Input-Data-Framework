@@ -194,9 +194,9 @@ public class TspDynamicProgrammingIterative {
     return Math.sqrt(dx * dx + dy * dy);
   }
 
-  // Function to read coordinates from file
-  // Function to read coordinates from file
+  // Function to read data from file
   private static double[][] readCoordinatesFromFile(String cityFile, String coordinatesFile) {
+    // HashMap<Name of City, Coor of City>
     HashMap<String, double[]> cityCoordinates = new HashMap<>();
     try (BufferedReader br = new BufferedReader(new FileReader(coordinatesFile))) {
       String line;
@@ -210,7 +210,7 @@ public class TspDynamicProgrammingIterative {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
+    // Read from weights.intra file 
     try (BufferedReader br = new BufferedReader(new FileReader(cityFile))) {
       String line;
       int count = 0;

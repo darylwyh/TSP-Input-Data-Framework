@@ -1,7 +1,12 @@
 package williamfiset;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.HashMap;
 
 public class combinations {
     // This method generates all bit sets of size n where r bits

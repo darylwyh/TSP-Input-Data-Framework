@@ -71,12 +71,13 @@ public class norm {
 
     public static void main(String[] args) {
         try {
-            int n = 50;  
-            String filename = "ISP data\\berlin52.tsp";
+            int n = 20;  
+            // String filename = "ISP data\\berlin52.tsp";
+            String filename = "ISP data\\ch71009.tsp";
             double[][] coordinates = readCoordinates(filename, n);
             coordinates = equirectangularProjection(coordinates);
 
-            String fileName = "points50_berlin.txt";
+            String fileName = "points20_china.txt";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
                 for (int i = 0; i < coordinates.length; i++) {
                     writer.write(String.format("%.6f %.6f", coordinates[i][0], coordinates[i][1]));

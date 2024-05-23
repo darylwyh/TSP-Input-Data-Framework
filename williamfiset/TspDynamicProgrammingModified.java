@@ -17,6 +17,7 @@ public class TspDynamicProgrammingModified {
 
     private final int N, start;
     private final double[][] coordinates;
+    private final double[][] distance;
     private List<Integer> tour = new ArrayList<>();
     private double minTourCost = Double.POSITIVE_INFINITY;
     private boolean ranSolver = false;
@@ -29,19 +30,20 @@ public class TspDynamicProgrammingModified {
         N = coordinates.length;
 
         // Create distance matrix based on pairwise distances between coordinates
-        System.err.println("distanceMatrix:");
+        System.out.println("distanceMatrix:");
         double[][] distanceMatrix = new double[N][N];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                distanceMatrix[i][j] = distance(i,j);
-                System.err.println(distanceMatrix[i][j]);
+                distanceMatrix[i][j] = calcdistance(i,j, coordinates);
+                System.out.println(distanceMatrix[i][j]);
             }
         }
+        System.out.println("n is :" + N);
 
         if (N <= 2)
             throw new IllegalStateException("N <= 2 not yet supported.");
-        if (N != coordinates[0].length)
-            throw new IllegalStateException("Matrix must be square (n x n)");
+        //if (N != coordinates[0].length)
+        //    throw new IllegalStateException("Matrix must be square (n x n)");
         if (start < 0 || start >= N)
             throw new IllegalArgumentException("Invalid start node.");
         if (N > 32)
@@ -51,6 +53,7 @@ public class TspDynamicProgrammingModified {
 
         this.start = start;
         this.coordinates = coordinates;
+        this.distance = distanceMatrix;
     }
 
     // Returns the optimal tour for the traveling salesman problem.
@@ -67,85 +70,93 @@ public class TspDynamicProgrammingModified {
         return minTourCost;
     }
 
-    // Solves the traveling salesman problem and caches solution.
-    public void solve() {
+   // Solves the traveling salesman problem and caches solution.
+  public void solve() {
 
-        if (ranSolver)
-            return;
+    if (ranSolver)
+      return;
+    // exp: N = 6, END_STATE = 00111111, all cities visited
+    final int END_STATE = (1 << N) - 1;
+    Double[][] memo = new Double[N][1 << N];
 
-        final int END_STATE = (1 << N) - 1;
-        Double[][] memo = new Double[N][1 << N];
-
-        // Add all outgoing edges from the starting node to memo table.
-        for (int end = 0; end < N; end++) {
-            if (end == start)
-                continue;
-            memo[end][(1 << start) | (1 << end)] = distance(start, end);
-        }
-
-        for (int r = 3; r <= N; r++) {
-            for (int subset : combinations(r, N)) {
-                if (notIn(start, subset))
-                    continue;
-                for (int next = 0; next < N; next++) {
-                    if (next == start || notIn(next, subset))
-                        continue;
-                    int subsetWithoutNext = subset ^ (1 << next);
-                    double minDist = Double.POSITIVE_INFINITY;
-                    for (int end = 0; end < N; end++) {
-                        if (end == start || end == next || notIn(end, subset))
-                            continue;
-                        double newDistance = memo[end][subsetWithoutNext] + distance(end, next);
-                        if (newDistance < minDist) {
-                            minDist = newDistance;
-                        }
-                    }
-                    memo[next][subset] = minDist;
-                }
-            }
-        }
-
-        // Connect tour back to starting node and minimize cost.
-        for (int i = 0; i < N; i++) {
-            if (i == start)
-                continue;
-            double tourCost = memo[i][END_STATE] + distance(i, start);
-            if (tourCost < minTourCost) {
-                minTourCost = tourCost;
-            }
-        }
-
-        int lastIndex = start;
-        int state = END_STATE;
-        tour.add(start);
-
-        // Reconstruct TSP path from memo table.
-        for (int i = 1; i < N; i++) {
-
-            int bestIndex = -1;
-            double bestDist = Double.POSITIVE_INFINITY;
-            for (int j = 0; j < N; j++) {
-                if (j == start || notIn(j, state))
-                    continue;
-                double newDist = memo[j][state] + distance(j, lastIndex);
-                if (newDist < bestDist) {
-                    bestIndex = j;
-                    bestDist = newDist;
-                }
-            }
-
-            tour.add(bestIndex);
-            state = state ^ (1 << bestIndex);
-            lastIndex = bestIndex;
-        }
-
-        tour.add(start);
-        Collections.reverse(tour);
-
-        ranSolver = true;
+    // Add all outgoing edges from the starting node to memo table.
+    // Stores all distances in memoization table. As base case.
+    for (int end = 0; end < N; end++) {
+      if (end == start)
+        continue; // don't add an edge from a node to itself
+      // both the starting and the destination nodes visited
+      memo[end][(1 << start) | (1 << end)] = distance[start][end];
     }
 
-    private double distance(int i, int j) {
+    // minimum number of cities required for such tour cycle is 3
+    for (int r = 3; r <= N; r++) {
+      // iterates over all combinations of cities with r cities visited out of N
+      // subset represents each combination of cities
+      for (int subset : combinations(r, N)) {
+        if (notIn(start, subset))
+          continue; // ensure starting city in subset
+        // iterates over all possible cities to move to from the starting city
+        for (int next = 0; next < N; next++) {
+          if (next == start || notIn(next, subset))
+            continue;
+          int subsetWithoutNext = subset ^ (1 << next);
+          double minDist = Double.POSITIVE_INFINITY;
+          for (int end = 0; end < N; end++) {
+            if (end == start || end == next || notIn(end, subset))
+              continue;
+            double newDistance = memo[end][subsetWithoutNext] + distance[end][next];
+            if (newDistance < minDist) {
+              minDist = newDistance;
+            }
+          }
+          memo[next][subset] = minDist;
+        }
+      }
+    }
+
+    // Connect tour back to starting node and minimize cost.
+    for (int i = 0; i < N; i++) {
+      if (i == start)
+        continue;
+      // memo[..]: cost of completing tour from city i to starting city
+      double tourCost = memo[i][END_STATE] + distance[i][start];
+      if (tourCost < minTourCost) {
+        minTourCost = tourCost;
+      }
+    }
+
+    int lastIndex = start;
+    int state = END_STATE;
+    tour.add(start);
+
+    // Reconstruct TSP path from memo table.
+    for (int i = 1; i < N; i++) {
+
+      int bestIndex = -1; // index of best city to visit next
+      double bestDist = Double.POSITIVE_INFINITY;
+      for (int j = 0; j < N; j++) {
+        if (j == start || notIn(j, state))
+          continue;
+        double newDist = memo[j][state] + distance[j][lastIndex];
+        if (newDist < bestDist) {
+          bestIndex = j;
+          bestDist = newDist;
+        }
+      }
+
+      tour.add(bestIndex);
+      // mark the chosen city as visited by removing it from current state
+      state = state ^ (1 << bestIndex);
+      lastIndex = bestIndex;
+    }
+
+    tour.add(start);
+    Collections.reverse(tour);
+
+    ranSolver = true; // bool to tell tsp is solved
+  }
+
+    private double calcdistance(int i, int j, double[][] coordinates) {
         // Euclidean distance formula within 1x1 range
         double xi = coordinates[i][0];
         double yi = coordinates[i][1];
@@ -285,12 +296,7 @@ public class TspDynamicProgrammingModified {
         // normalize
         coordinates = equirectangularProjection(coordinates);
 
-        System.out.println("coors: ");
-        for (int j = 0; j < coordinates[0].length; j++) {
-            for (int i = 0; i < coordinates.length; i++) {
-                System.out.println(coordinates[i][j]);
-            }
-        }
+      
         // Calculate the number of points
         int n = coordinates.length, n2 = coordinates[0].length;
         System.out.printf("n is %d and n2 is %d ", n, n2);
@@ -312,3 +318,13 @@ public class TspDynamicProgrammingModified {
         }
     }
 }
+
+
+/* 
+  System.out.println("coors: ");
+        for (int j = 0; j < coordinates[0].length; j++) {
+            for (int i = 0; i < coordinates.length; i++) {
+                System.out.println(coordinates[i][j]);
+            }
+        }
+ */

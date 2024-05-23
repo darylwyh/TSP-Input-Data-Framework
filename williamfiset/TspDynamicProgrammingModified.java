@@ -321,6 +321,7 @@ public class TspDynamicProgrammingModified {
 
 
 /* 
+program from any data --> Comparable data? 
   System.out.println("coors: ");
         for (int j = 0; j < coordinates[0].length; j++) {
             for (int i = 0; i < coordinates.length; i++) {

@@ -166,8 +166,7 @@ public class TspDynamicProgrammingIterative {
 
   // To find all the combinations of size r we need to recurse until we have
   // selected r elements (aka r = 0), otherwise if r != 0 then we still need to
-  // select
-  // an element which is found after the position of our last selected element
+  // select an element which is found after the position of our last selected element
   private static void combinationsHelper(int set, int at, int r, int n, List<Integer> subsets) {
 
     // Return early if there are more elements left to select than what is
@@ -253,31 +252,6 @@ public class TspDynamicProgrammingIterative {
     }
   }
 
-  private static double[][] normalizeCoordinates(double[][] coordinates) {
-    // Find minimum and maximum values of latitude and longitude
-    double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE; // Latitude
-    double minLon = Double.MAX_VALUE, maxLon = Double.MIN_VALUE; // Longitude
-    for (double[] coord : coordinates) {
-      minLat = Math.min(minLat, coord[0]);
-      maxLat = Math.max(maxLat, coord[0]);
-      minLon = Math.min(minLon, coord[1]);
-      maxLon = Math.max(maxLon, coord[1]);
-    }
-
-    // Normalize each coordinate
-    double[][] normalizedCoordinates = new double[coordinates.length][2];
-    for (int i = 0; i < coordinates.length; i++) {
-      double lat = coordinates[i][0];
-      double lon = coordinates[i][1];
-      double normalizedLat = (lat - minLat) / (maxLat - minLat);
-      double normalizedLon = (lon - minLon) / (maxLon - minLon);
-      normalizedCoordinates[i][0] = normalizedLat;
-      normalizedCoordinates[i][1] = normalizedLon;
-    }
-
-    return normalizedCoordinates;
-  }
-
   private static double[][] equirectangularProjection(double[][] coordinates) {
     // Find minimum and maximum latitude and longitude
     double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE;
@@ -287,8 +261,7 @@ public class TspDynamicProgrammingIterative {
       maxLat = Math.max(maxLat, coord[0]);
       minLon = Math.min(minLon, coord[1]);
       maxLon = Math.max(maxLon, coord[1]);
-    }
-
+    } 
     // Project coordinates and scale to fit within (0, 1)
     double[][] projectedCoordinates = new double[coordinates.length][2];
     for (int i = 0; i < coordinates.length; i++) {
@@ -361,7 +334,30 @@ public class TspDynamicProgrammingIterative {
 
 /*
  * 
- * 
+ * private static double[][] normalizeCoordinates(double[][] coordinates) {
+    // Find minimum and maximum values of latitude and longitude
+    double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE; // Latitude
+    double minLon = Double.MAX_VALUE, maxLon = Double.MIN_VALUE; // Longitude
+    for (double[] coord : coordinates) {
+      minLat = Math.min(minLat, coord[0]);
+      maxLat = Math.max(maxLat, coord[0]);
+      minLon = Math.min(minLon, coord[1]);
+      maxLon = Math.max(maxLon, coord[1]);
+    }
+
+    // Normalize each coordinate
+    double[][] normalizedCoordinates = new double[coordinates.length][2];
+    for (int i = 0; i < coordinates.length; i++) {
+      double lat = coordinates[i][0];
+      double lon = coordinates[i][1];
+      double normalizedLat = (lat - minLat) / (maxLat - minLat);
+      double normalizedLon = (lon - minLon) / (maxLon - minLon);
+      normalizedCoordinates[i][0] = normalizedLat;
+      normalizedCoordinates[i][1] = normalizedLon;
+    }
+
+    return normalizedCoordinates;
+  }
  * // calc distance matrix
  * private static double[][] calculateDistanceMatrix(double[][] coordinates) {
  * int n = coordinates.length;

@@ -13,6 +13,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/*
+Read from coordinates and translate to suitable dataset
+
+
+*/
 public class TspDynamicProgrammingModified {
 
     private final int N, start;
@@ -295,7 +300,7 @@ public class TspDynamicProgrammingModified {
         double[][] coordinates = readCoordinatesFromFile("ISP data\\weights.intra", "ISP data\\city_coordinates.txt");
         // normalize
         coordinates = equirectangularProjection(coordinates);
-
+        
       
         // Calculate the number of points
         int n = coordinates.length, n2 = coordinates[0].length;

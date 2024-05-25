@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "TspDynamicProgrammingIterative",
+            "request": "launch",
+            "mainClass": "williamfiset.src.TspDynamicProgrammingIterative",
+            "projectName": "TSP-Input-Data-Framework_88afed8d"
+        },
+        {
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",

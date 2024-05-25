@@ -2,7 +2,12 @@ import numpy as np
 from geopy.distance import geodesic  
 from sklearn.manifold import MDS # Multi Dimensional Scaling 
 
+'''
+Translate RocketFuel ISP Topologies data to Normalized DataPoints for TSP
+Calculate Euclidean Distance with geodesic.distance from geodesic python
+Turn into distance Matrix for Held-Karp Algorithm
 
+'''
 # Read file from path
 file_path = 'ISP data\city_coordinates.txt'
 # Read city coordinates from the file into dict 

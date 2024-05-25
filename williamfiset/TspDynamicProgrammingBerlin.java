@@ -282,19 +282,20 @@ public class TspDynamicProgrammingBerlin {
             // Print initial heap usage
             printHeapUsage();
 
-            int n = 24; // Choose up to 25 nodes
-            //String filename = "ISP data\\berlin52.tsp";
-            String filename = "ISP data\\ch71009.tsp";
+            int n = 23; // Choose up to 25 nodes
+            String filename = "ISP data\\berlin52.tsp";
+            //String filename = "ISP data\\ch71009.tsp";
             double[][] coordinates = readCoordinates(filename, n);
             coordinates = equirectangularProjection(coordinates);
 
-            String fileName = "points24_china.txt";
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            //String fileName = "points24_china.txt";
+            String writefileName = "points23_berlin.txt";
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(writefileName))) {
                 for (int i = 0; i < coordinates.length; i++) {
                     writer.write(String.format("%.6f %.6f", coordinates[i][0], coordinates[i][1]));
                     writer.newLine(); // Move to the next line after writing each coordinate pair
                 }
-                System.out.println("Coordinates have been written to " + fileName);
+                System.out.println("Coordinates have been written to " + writefileName);
             } catch (IOException e) {
                 e.printStackTrace();
             }

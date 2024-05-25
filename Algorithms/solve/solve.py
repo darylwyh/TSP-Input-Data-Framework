@@ -1,7 +1,4 @@
-from problem_tsp import TSP
 import numpy as np
-import random
-import matplotlib.pyplot as plt
 from tsp_baseline import run_insertion
 
 def load_points(filename):
@@ -13,13 +10,14 @@ def load_points(filename):
     return np.array(points)
 
 def main():
+    # n=10,20,30,40,50 
     # Load points from the file
-    filename = 'attention-learn-to-route\data\TSPDataset\points20_second.txt'
+    filename = 'points20_second.txt'
     points = load_points(filename)
 
     # Run Random Insertion algorithm
     cost, tour = run_insertion(points, method='random')
-
+    
     # Print the results
     print(f"Total cost: {cost:.2f}")
     print(f"Tour: {tour}")

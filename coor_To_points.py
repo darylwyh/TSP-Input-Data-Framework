@@ -7,6 +7,8 @@ Translate RocketFuel ISP Topologies data to Normalized DataPoints for TSP
 Calculate Euclidean Distance with geodesic.distance from geodesic python
 Turn into distance Matrix for Held-Karp Algorithm
 
+MDS
+
 '''
 # Read file from path
 file_path = 'ISP data\city_coordinates.txt'

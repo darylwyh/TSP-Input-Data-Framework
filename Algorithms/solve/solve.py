@@ -18,8 +18,9 @@ def main():
     # Run Random Insertion algorithm
     cost, tour = run_insertion(points, method='random')
     # Run 
-
+    points = 10
     # Print the results
+    print(f"N is: {points}")
     print(f"Total cost: {cost:.2f}")
     print(f"Tour: {tour}")
 

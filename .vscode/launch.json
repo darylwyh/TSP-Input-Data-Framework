@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "JustWriteDataBerlin",
+            "request": "launch",
+            "mainClass": "williamfiset.JustWriteDataBerlin",
+            "projectName": "TSP-Input-Data-Framework_88afed8d"
+        },
+        {
+            "type": "java",
+            "name": "JustWriteData",
+            "request": "launch",
+            "mainClass": "williamfiset.JustWriteData",
+            "projectName": "TSP-Input-Data-Framework_88afed8d"
+        },
+        {
+            "type": "java",
             "name": "TspDynamicProgrammingBerlin",
             "request": "launch",
             "mainClass": "williamfiset.TspDynamicProgrammingBerlin",

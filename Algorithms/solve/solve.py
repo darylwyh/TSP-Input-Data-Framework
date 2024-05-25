@@ -1,5 +1,5 @@
 import numpy as np
-from tsp_baseline import run_insertion
+from tsp_baseline import run_insertion, solve_lkh_log, load_dataset, save_dataset, get_lkh_executable
 
 def load_points(filename):
     points = []
@@ -17,7 +17,8 @@ def main():
 
     # Run Random Insertion algorithm
     cost, tour = run_insertion(points, method='random')
-    
+    # Run 
+
     # Print the results
     print(f"Total cost: {cost:.2f}")
     print(f"Tour: {tour}")

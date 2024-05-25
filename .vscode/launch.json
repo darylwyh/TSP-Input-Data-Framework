@@ -8,6 +8,13 @@
             "type": "java",
             "name": "TspDynamicProgrammingIterative",
             "request": "launch",
+            "mainClass": "williamfiset.TspDynamicProgrammingIterative",
+            "projectName": "TSP-Input-Data-Framework_88afed8d"
+        },
+        {
+            "type": "java",
+            "name": "TspDynamicProgrammingIterative",
+            "request": "launch",
             "mainClass": "williamfiset.src.TspDynamicProgrammingIterative",
             "projectName": "TSP-Input-Data-Framework_88afed8d"
         },

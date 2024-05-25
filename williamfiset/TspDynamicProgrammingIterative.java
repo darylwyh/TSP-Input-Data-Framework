@@ -303,12 +303,7 @@ public class TspDynamicProgrammingIterative {
         // normalize
         coordinates = equirectangularProjection(coordinates);
         //coordinates = MDSProjection.mdsProjection(coordinates);
-        System.out.println("coors: ");
-        for (int j = 0; j < coordinates[0].length; j++) {
-            for (int i = 0; i < coordinates.length; i++) {
-                System.out.println(coordinates[i][j]);
-            }
-        }
+        
         // Calculate the number of points
         int n = coordinates.length;
         System.out.printf("n is %d ", n);
@@ -345,8 +340,12 @@ public class TspDynamicProgrammingIterative {
 }
 
 
-/*
- * 
+/*System.out.println("coors: ");
+        for (int j = 0; j < coordinates[0].length; j++) {
+            for (int i = 0; i < coordinates.length; i++) {
+                System.out.println(coordinates[i][j]);
+            }
+        }
  * private static double[][] normalizeCoordinates(double[][] coordinates) {
     // Find minimum and maximum values of latitude and longitude
     double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE; // Latitude

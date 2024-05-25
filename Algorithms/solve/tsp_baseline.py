@@ -320,7 +320,7 @@ if __name__ == "__main__":
     opts = parser.parse_args()
 
     assert opts.o is None or len(opts.datasets) == 1, "Cannot specify result filename with more than one dataset"
-
+    results_dir = "results"
     for dataset_path in opts.datasets:
 
         assert os.path.isfile(check_extension(dataset_path)), "File does not exist!"
@@ -328,7 +328,8 @@ if __name__ == "__main__":
         dataset_basename, ext = os.path.splitext(os.path.split(dataset_path)[-1])
 
         if opts.o is None:
-            results_dir = os.path.join(opts.results_dir, "tsp", dataset_basename)
+            #results_dir = os.path.join(opts.results_dir, "tsp", dataset_basename)
+            
             os.makedirs(results_dir, exist_ok=True)
 
             out_file = os.path.join(results_dir, "{}{}{}-{}{}".format(
@@ -358,7 +359,7 @@ if __name__ == "__main__":
                 opts.progress_bar_mininterval
             )
         elif method in ("gurobi", "gurobigap", "gurobit", "concorde", "lkh") or method[-9:] == 'insertion':
-
+            print("results", results_dir)
             target_dir = os.path.join(results_dir, "{}-{}".format(
                 dataset_basename,
                 opts.method

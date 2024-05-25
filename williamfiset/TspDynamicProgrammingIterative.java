@@ -10,21 +10,17 @@
 // package com.williamfiset.algorithms.graphtheory;
 package williamfiset;
 
+import com.sun.management.OperatingSystemMXBean;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.*;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.lang.management.MemoryUsage;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class TspDynamicProgrammingIterative {
 
@@ -300,14 +296,35 @@ public class TspDynamicProgrammingIterative {
         return projectedCoordinates;
     }
 
+    private static void printHeapUsage() {
+        MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
+        MemoryUsage heapMemoryUsage = memoryMXBean.getHeapMemoryUsage();
+
+        long usedHeapMemory = heapMemoryUsage.getUsed();
+        long maxHeapMemory = heapMemoryUsage.getMax();
+
+        System.out.println("Used heap memory: " + usedHeapMemory / (1024 * 1024) + " MB");
+        System.out.println("Max heap memory: " + maxHeapMemory / (1024 * 1024) + " MB");
+    }
+
+    private static void printCpuUsage() {
+        OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
+        double cpuLoad = osBean.getProcessCpuLoad() * 100;
+        System.out.println("CPU Load: " + cpuLoad + " %");
+    }
+
     public static void main(String[] args) {
+        // Measure start time
+        long startTime = System.currentTimeMillis();
+        // Print initial heap usage
+        // printHeapUsage();
 
         // Read coordinates from file
         double[][] coordinates = readCoordinatesFromFile("ISP data\\weights.intra", "ISP data\\city_coordinates.txt");
         // normalize
         coordinates = equirectangularProjection(coordinates);
         //coordinates = MDSProjection.mdsProjection(coordinates);
-        
+
         // Calculate the number of points
         int n = coordinates.length;
         System.out.printf("n is %d ", n);
@@ -340,15 +357,18 @@ public class TspDynamicProgrammingIterative {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
-        MemoryUsage heapMemoryUsage = memoryMXBean.getHeapMemoryUsage();
 
-        long usedHeapMemory = heapMemoryUsage.getUsed();
-        long maxHeapMemory = heapMemoryUsage.getMax();
+        // Measure end time
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
 
-        System.out.println("Used heap memory: " + usedHeapMemory / (1024 * 1024) + " MB");
-        System.out.println("Max heap memory: " + maxHeapMemory / (1024 * 1024) + " MB");
+        // Print elapsed time
+        System.out.println("Elapsed time: " + elapsedTime + " milliseconds");
+
+        // Print final heap usage  // Print CPU usage
+        printHeapUsage();
+        printCpuUsage();
+
     }
 }
 

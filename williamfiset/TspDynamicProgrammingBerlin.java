@@ -1,13 +1,19 @@
 package williamfiset;
 
+
+import com.sun.management.OperatingSystemMXBean;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.*;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
+import java.lang.management.MemoryUsage;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.List; // Make sure to import the correct MXBean for CPU load
 
 public class TspDynamicProgrammingBerlin {
 
@@ -24,10 +30,12 @@ public class TspDynamicProgrammingBerlin {
     public TspDynamicProgrammingBerlin(int start, double[][] coordinates) {
         N = coordinates.length;
 
-        if (N <= 2)
+        if (N <= 2) {
             throw new IllegalStateException("N <= 2 not yet supported.");
-        if (start < 0 || start >= N)
+        }
+        if (start < 0 || start >= N) {
             throw new IllegalArgumentException("Invalid start node.");
+        }
 
         // Create distance matrix based on pairwise distances between coordinates
         distanceMatrix = new double[N][N];
@@ -42,46 +50,53 @@ public class TspDynamicProgrammingBerlin {
 
     // Returns the optimal tour for the traveling salesman problem.
     public List<Integer> getTour() {
-        if (!ranSolver)
+        if (!ranSolver) {
             solve();
+        }
         return tour;
     }
 
     // Returns the minimal tour cost.
     public double getTourCost() {
-        if (!ranSolver)
+        if (!ranSolver) {
             solve();
+        }
         return minTourCost;
     }
 
     // Solves the traveling salesman problem and caches solution.
     public void solve() {
 
-        if (ranSolver)
+        if (ranSolver) {
             return;
+        }
 
         final int END_STATE = (1 << N) - 1;
         Double[][] memo = new Double[N][1 << N];
 
         // Add all outgoing edges from the starting node to memo table.
         for (int end = 0; end < N; end++) {
-            if (end == start)
+            if (end == start) {
                 continue;
+            }
             memo[end][(1 << start) | (1 << end)] = distanceMatrix[start][end];
         }
 
         for (int r = 3; r <= N; r++) {
             for (int subset : combinations(r, N)) {
-                if (notIn(start, subset))
+                if (notIn(start, subset)) {
                     continue;
+                }
                 for (int next = 0; next < N; next++) {
-                    if (next == start || notIn(next, subset))
+                    if (next == start || notIn(next, subset)) {
                         continue;
+                    }
                     int subsetWithoutNext = subset ^ (1 << next);
                     double minDist = Double.POSITIVE_INFINITY;
                     for (int end = 0; end < N; end++) {
-                        if (end == start || end == next || notIn(end, subset))
+                        if (end == start || end == next || notIn(end, subset)) {
                             continue;
+                        }
                         double newDistance = memo[end][subsetWithoutNext] + distanceMatrix[end][next];
                         if (newDistance < minDist) {
                             minDist = newDistance;
@@ -94,8 +109,9 @@ public class TspDynamicProgrammingBerlin {
 
         // Connect tour back to starting node and minimize cost.
         for (int i = 0; i < N; i++) {
-            if (i == start)
+            if (i == start) {
                 continue;
+            }
             double tourCost = memo[i][END_STATE] + distanceMatrix[i][start];
             if (tourCost < minTourCost) {
                 minTourCost = tourCost;
@@ -112,8 +128,9 @@ public class TspDynamicProgrammingBerlin {
             int bestIndex = -1;
             double bestDist = Double.POSITIVE_INFINITY;
             for (int j = 0; j < N; j++) {
-                if (j == start || notIn(j, state))
+                if (j == start || notIn(j, state)) {
                     continue;
+                }
                 double newDist = memo[j][state] + distanceMatrix[j][lastIndex];
                 if (newDist < bestDist) {
                     bestIndex = j;
@@ -162,8 +179,9 @@ public class TspDynamicProgrammingBerlin {
         // Return early if there are more elements left to select than what is
         // available.
         int elementsLeftToPick = n - at;
-        if (elementsLeftToPick < r)
+        if (elementsLeftToPick < r) {
             return;
+        }
 
         // We selected 'r' elements so we found a valid subset!
         if (r == 0) {
@@ -193,14 +211,16 @@ public class TspDynamicProgrammingBerlin {
                 continue;
             }
             if (readNodes) {
-                if (line.trim().equals("EOF"))
+                if (line.trim().equals("EOF")) {
                     break;
+                }
                 String[] parts = line.trim().split("\\s+");
                 double x = Double.parseDouble(parts[1]);
                 double y = Double.parseDouble(parts[2]);
-                coordinatesList.add(new double[] { x, y });
-                if (coordinatesList.size() == numPoints)
+                coordinatesList.add(new double[]{x, y});
+                if (coordinatesList.size() == numPoints) {
                     break;
+                }
             }
         }
         br.close();
@@ -238,15 +258,37 @@ public class TspDynamicProgrammingBerlin {
         return projectedCoordinates;
     }
 
+    private static void printHeapUsage() {
+        MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
+        MemoryUsage heapMemoryUsage = memoryMXBean.getHeapMemoryUsage();
+
+        long usedHeapMemory = heapMemoryUsage.getUsed();
+        long maxHeapMemory = heapMemoryUsage.getMax();
+
+        System.out.println("Used heap memory: " + usedHeapMemory / (1024 * 1024) + " MB");
+        System.out.println("Max heap memory: " + maxHeapMemory / (1024 * 1024) + " MB");
+    }
+
+    private static void printCpuUsage() {
+        OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
+        double cpuLoad = osBean.getProcessCpuLoad() * 100;
+        System.out.println("CPU Load: " + cpuLoad + " %");
+    }
+
     public static void main(String[] args) {
         try {
-            int n = 20; // Choose up to 20 nodes
+            // Measure start time
+            long startTime = System.currentTimeMillis();
+            // Print initial heap usage
+            printHeapUsage();
+
+            int n = 24; // Choose up to 25 nodes
             //String filename = "ISP data\\berlin52.tsp";
             String filename = "ISP data\\ch71009.tsp";
             double[][] coordinates = readCoordinates(filename, n);
             coordinates = equirectangularProjection(coordinates);
 
-            String fileName = "points20_china.txt";
+            String fileName = "points24_china.txt";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
                 for (int i = 0; i < coordinates.length; i++) {
                     writer.write(String.format("%.6f %.6f", coordinates[i][0], coordinates[i][1]));
@@ -264,6 +306,18 @@ public class TspDynamicProgrammingBerlin {
             // Print tour and tour cost
             System.out.println("Tour: " + solver.getTour());
             System.out.println("Tour cost: " + solver.getTourCost());
+
+            // Measure end time
+            long endTime = System.currentTimeMillis();
+            long elapsedTime = endTime - startTime;
+
+            // Print elapsed time
+            System.out.println("Elapsed time: " + elapsedTime + " milliseconds");
+
+            // Print final heap usage  // Print CPU usage
+            printHeapUsage(); printCpuUsage();
+
+            
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TspDynamicProgrammingBerlin",
+            "request": "launch",
+            "mainClass": "williamfiset.TspDynamicProgrammingBerlin",
+            "projectName": "TSP-Input-Data-Framework_88afed8d"
+        },
+        {
+            "type": "java",
+            "name": "TspMemoBerlin",
+            "request": "launch",
+            "mainClass": "williamfiset.TspMemoBerlin",
+            "projectName": "TSP-Input-Data-Framework_88afed8d"
+        },
+        {
+            "type": "java",
             "name": "TspMemoHashMap",
             "request": "launch",
             "mainClass": "williamfiset.TspMemoHashMap",

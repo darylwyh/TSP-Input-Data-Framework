@@ -9,14 +9,16 @@
             "name": "TspDynamicProgrammingIterative",
             "request": "launch",
             "mainClass": "williamfiset.TspDynamicProgrammingIterative",
-            "projectName": "TSP-Input-Data-Framework_88afed8d"
+            "projectName": "TSP-Input-Data-Framework_88afed8d",
+            "vmArgs": "-Xmx2048m"
         },
         {
             "type": "java",
             "name": "TspDynamicProgrammingIterative",
             "request": "launch",
             "mainClass": "williamfiset.src.TspDynamicProgrammingIterative",
-            "projectName": "TSP-Input-Data-Framework_88afed8d"
+            "projectName": "TSP-Input-Data-Framework_88afed8d",
+            "vmArgs": "-Xmx2048m"
         },
         {
             "name": "Python Debugger: Current File",

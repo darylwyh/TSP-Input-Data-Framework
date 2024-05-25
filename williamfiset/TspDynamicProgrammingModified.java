@@ -15,8 +15,6 @@ import java.util.Set;
 
 /*
 Read from coordinates and translate to suitable dataset
-
-
 */
 public class TspDynamicProgrammingModified {
 
@@ -300,7 +298,7 @@ public class TspDynamicProgrammingModified {
         double[][] coordinates = readCoordinatesFromFile("ISP data\\weights.intra", "ISP data\\city_coordinates.txt");
         // normalize
         coordinates = equirectangularProjection(coordinates);
-        
+
       
         // Calculate the number of points
         int n = coordinates.length, n2 = coordinates[0].length;
@@ -311,7 +309,7 @@ public class TspDynamicProgrammingModified {
         System.out.println("Tour: " + solver.getTour());
         System.out.println("Tour cost: " + solver.getTourCost());
         // Write coordinates to a text file
-        String fileName = "points20_third.txt";
+        String fileName = "points10_third.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (int i = 0; i < coordinates.length; i++) {
                 writer.write(String.format("%.6f %.6f", coordinates[i][0], coordinates[i][1]));

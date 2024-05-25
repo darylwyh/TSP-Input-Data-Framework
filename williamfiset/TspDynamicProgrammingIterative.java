@@ -230,10 +230,11 @@ public class TspDynamicProgrammingIterative {
         }
         // Read from weights.intra file
         try (BufferedReader br = new BufferedReader(new FileReader(cityFile))) {
+            int pointsSize = 20;
             String line;
             Set<String> uniqueCoordinates = new HashSet<>(); // Set to store unique coordinates
             List<double[]> uniqueCoordinatesList = new ArrayList<>(); // List to store unique coordinates in order
-            while ((line = br.readLine()) != null && uniqueCoordinates.size() < 20) {
+            while ((line = br.readLine()) != null && uniqueCoordinates.size() < pointsSize) {
                 String[] parts = line.trim().split("\\s+");
                 String city1 = parts[0].replaceAll("\\+", " ").split(",")[0].trim();
                 String city2 = parts[1].replaceAll("\\+", " ").split(",")[0].trim();
@@ -325,8 +326,8 @@ public class TspDynamicProgrammingIterative {
         System.out.println("Tour: " + solver.getTour());
         System.out.println("Tour cost: " + solver.getTourCost());
 
-        // Write coordinates to a text file
-        String fileName = "points20_second.txt";
+        // Write coordinates to a text file to pointsSize
+        String fileName = "points20_RocketFuel.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (int i = 0; i < coordinates.length; i++) {
                 writer.write(String.format("%.6f %.6f", coordinates[i][0], coordinates[i][1]));
@@ -336,6 +337,7 @@ public class TspDynamicProgrammingIterative {
         } catch (IOException e) {
             e.printStackTrace();
         }
+ 
     }
 }
 

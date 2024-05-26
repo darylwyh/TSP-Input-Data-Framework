@@ -1,0 +1,600 @@
+
+
+# Concorde EXACT Solver
+
+### RocketFuel
+N is: 10
+Total cost: 2.59
+Tour: [0, 2, 4, 5, 6, 3, 8, 9, 7, 1]
+Duration: 0.01 seconds
+Calculated tour length: 2.59
+Elapsed time: 0.03 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 351.53 MB (Resident Set Size)
+
+N is: 20
+Total cost: 2.72
+Tour: [0, 11, 1, 17, 18, 13, 14, 12, 19, 7, 15, 9, 16, 8, 3, 10, 6, 5, 4, 2]
+Duration: 0.03 seconds
+Calculated tour length: 2.72
+Elapsed time: 0.03 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.22 MB (Resident Set Size)
+
+N is: 25
+Total cost: 2.81
+Tour: [0, 2, 4, 5, 6, 20, 10, 3, 8, 16, 9, 15, 7, 24, 22, 23, 19, 12, 14, 13, 18, 17, 21, 1, 11]
+Duration: 0.02 seconds
+Calculated tour length: 2.81
+Elapsed time: 0.03 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.77 MB (Resident Set Size)
+
+N is: 30
+Total cost: 2.95
+Tour: [0, 11, 1, 25, 21, 17, 18, 13, 14, 12, 19, 27, 29, 23, 22, 24, 7, 15, 9, 26, 16, 8, 3, 10, 20, 6, 5, 4, 28, 2]
+Duration: 0.03 seconds
+Calculated tour length: 2.95
+Elapsed time: 0.04 seconds
+User CPU time: 0.01 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.24 MB (Resident Set Size)
+
+N is: 40
+Total cost: 3.32
+Tour: [0, 36, 2, 31, 28, 4, 5, 39, 6, 20, 30, 3, 8, 10, 37, 16, 26, 9, 15, 32, 7, 24, 22, 23, 29, 27, 19, 12, 14, 13, 18, 17, 21, 25, 38, 33, 1, 34, 35, 11]
+Duration: 0.05 seconds
+Calculated tour length: 3.32
+Elapsed time: 0.06 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 351.48 MB (Resident Set Size)
+
+N is: 50
+Total cost: 3.56
+Tour: [0, 38, 2, 48, 49, 4, 5, 41, 6, 28, 31, 47, 30, 20, 8, 3, 10, 39, 16, 26, 24, 22, 23, 7, 42, 9, 15, 32, 29, 27, 19, 46, 45, 12, 14, 13, 18, 17, 21, 43, 25, 40, 44, 33, 1, 36, 35, 34, 11, 37]
+Duration: 0.07 seconds
+Calculated tour length: 3.56
+Elapsed time: 0.07 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 350.58 MB (Resident Set Size)
+
+
+
+### Berlin
+N is: 10
+Total cost: 2.96
+Tour: [0, 4, 5, 3, 9, 8, 7, 2, 6, 1]
+Duration: 0.01 seconds
+Calculated tour length: 2.96
+Elapsed time: 0.01 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 350.16 MB (Resident Set Size)
+
+N is: 20
+Total cost: 3.91
+Tour: [0, 17, 2, 16, 6, 1, 19, 15, 13, 12, 10, 11, 3, 5, 4, 14, 9, 8, 7, 18]
+Duration: 0.02 seconds
+Calculated tour length: 3.91
+Elapsed time: 0.02 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.57 MB (Resident Set Size)
+
+
+N is: 25
+Total cost: 4.08
+Tour: [0, 20, 6, 1, 22, 19, 15, 13, 12, 10, 11, 24, 3, 5, 23, 4, 14, 9, 8, 7, 18, 2, 16, 17, 21]
+Duration: 0.03 seconds
+Calculated tour length: 4.08
+Elapsed time: 0.03 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 350.77 MB (Resident Set Size)
+
+N is: 30
+Total cost: 4.47
+Tour: [0, 15, 19, 22, 20, 6, 1, 29, 28, 25, 13, 12, 26, 27, 10, 11, 24, 3, 5, 23, 4, 14, 9, 8, 7, 18, 2, 16, 17, 21]
+Duration: 0.04 seconds
+Calculated tour length: 4.47
+Elapsed time: 0.05 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 351.06 MB (Resident Set Size)
+
+N is: 40
+Total cost: 4.92
+Tour: [0, 31, 35, 34, 33, 36, 38, 39, 37, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 13, 12, 10, 32, 9, 8, 7, 18, 2, 16, 20, 6, 1, 29, 28, 15, 19, 22, 30, 17, 21]
+Duration: 0.05 seconds
+Calculated tour length: 4.92
+Elapsed time: 0.05 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 351.57 MB (Resident Set Size)
+
+N is: 50
+Total cost: 5.43
+Tour: [0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 22, 19, 49, 15, 28, 46, 13, 12, 25, 26, 27, 10, 11, 24, 45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 42, 32, 9, 8, 7, 40, 18, 44, 31, 48]
+Duration: 0.09 seconds
+Calculated tour length: 5.43
+Elapsed time: 0.09 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 352.07 MB (Resident Set Size)
+
+
+
+
+### China
+N is: 10
+Total cost: 3.17
+Tour: [0, 3, 6, 8, 9, 7, 5, 4, 2, 1]
+Duration: 0.01 seconds
+Calculated tour length: 3.17
+Elapsed time: 0.01 seconds
+User CPU time: 0.01 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.25 MB (Resident Set Size)
+
+N is: 20
+Total cost: 4.16
+Tour: [0, 1, 2, 4, 5, 11, 10, 12, 14, 19, 18, 16, 17, 15, 13, 9, 8, 7, 6, 3]
+Duration: 0.02 seconds
+Calculated tour length: 4.16
+Elapsed time: 0.02 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 352.04 MB (Resident Set Size)
+
+N is: 25
+Total cost: 4.46
+Tour: [0, 1, 2, 4, 5, 11, 14, 19, 20, 22, 23, 21, 24, 15, 13, 17, 16, 18, 12, 10, 9, 8, 7, 6, 3]
+Duration: 0.03 seconds
+Calculated tour length: 4.46
+Elapsed time: 0.03 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.14 MB (Resident Set Size)
+
+
+N is: 30
+Total cost: 4.58
+Tour: [0, 3, 6, 7, 8, 9, 10, 12, 18, 16, 17, 13, 15, 24, 25, 21, 23, 26, 29, 28, 27, 22, 20, 19, 14, 11, 5, 4, 2, 1]
+Duration: 0.03 seconds
+Calculated tour length: 4.58
+Elapsed time: 0.04 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 351.20 MB (Resident Set Size)
+
+N is: 40
+Total cost: 5.00
+Tour: [0, 1, 2, 4, 5, 11, 14, 12, 10, 16, 18, 21, 25, 23, 26, 22, 19, 20, 27, 28, 34, 31, 29, 35, 33, 36, 39, 38, 37, 32, 30, 24, 15, 17, 13, 9, 8, 7, 6, 3]
+Duration: 0.04 seconds
+Calculated tour length: 5.00
+Elapsed time: 0.04 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.58 MB (Resident Set Size)
+
+
+N is: 50
+Total cost: 5.37
+Tour: [0, 1, 2, 4, 5, 11, 14, 12, 10, 16, 18, 21, 25, 23, 26, 22, 19, 20, 27, 28, 34, 31, 29, 35, 33, 36, 49, 44, 39, 48, 47, 43, 46, 45, 42, 37, 40, 41, 38, 32, 30, 24, 15, 17, 13, 9, 8, 7, 6, 3]
+Duration: 0.04 seconds
+Calculated tour length: 5.37
+Elapsed time: 0.04 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.70 MB (Resident Set Size)
+
+
+
+
+
+
+
+
+---
+
+
+
+# Random Insertion (Python)
+
+### RocketFuel 
+
+N is: 10
+Total cost: 2.59
+Tour: [0, 2, 4, 5, 6, 3, 8, 9, 7, 1]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.29 MB (Resident Set Size)
+
+N is: 20
+Total cost: 2.72
+Tour: [0, 2, 4, 5, 6, 10, 3, 8, 16, 9, 15, 7, 19, 12, 14, 13, 18, 17, 1, 11]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 352.01 MB (Resident Set Size)
+
+N is: 23
+Total cost: 2.81
+Tour: [0, 2, 4, 5, 6, 20, 10, 3, 8, 16, 9, 15, 7, 22, 19, 12, 14, 13, 18, 17, 21, 1, 11]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.07 MB (Resident Set Size)
+
+N is: 25
+Total cost: 2.82
+Tour: [0, 2, 4, 5, 6, 20, 10, 3, 8, 16, 9, 15, 7, 24, 23, 22, 19, 12, 14, 13, 18, 17, 21, 1, 11]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.52 MB (Resident Set Size)
+
+
+N is: 30
+Total cost: 2.96
+Tour: [0, 2, 28, 4, 5, 6, 20, 10, 3, 8, 16, 26, 9, 15, 7, 24, 23, 22, 29, 27, 19, 12, 14, 13, 18, 17, 21, 25, 1, 11]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.86 MB (Resident Set Size)
+
+
+N is: 40
+Total cost: 3.33
+Tour: [0, 36, 2, 31, 28, 4, 5, 39, 6, 20, 30, 10, 3, 8, 37, 16, 26, 9, 15, 32, 7, 24, 23, 22, 29, 27, 19, 12, 14, 13, 18, 17, 21, 25, 38, 33, 1, 34, 35, 11]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.52 MB (Resident Set Size)
+
+N is: 50
+Total cost: 3.88
+Tour: [0, 38, 2, 31, 48, 28, 49, 4, 5, 41, 6, 20, 30, 47, 10, 3, 8, 39, 16, 26, 9, 15, 32, 7, 42, 24, 23, 22, 29, 27, 19, 46, 45, 12, 14, 13, 18, 17, 21, 43, 25, 40, 44, 33, 1, 36, 35, 34, 11, 37]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.50 MB (Resident Set Size)
+
+
+
+
+
+
+### Berlin
+
+N is: 10
+Total cost: 2.96
+Tour: [0, 4, 5, 3, 9, 8, 7, 2, 6, 1]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.54 MB (Resident Set Size)
+
+N is: 20
+Total cost: 4.13
+Tour: [0, 4, 14, 5, 3, 11, 12, 13, 10, 9, 8, 7, 18, 2, 17, 16, 6, 1, 19, 15]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.09 MB (Resident Set Size)
+
+N is: 25
+Total cost: 4.37
+Tour: [0, 23, 4, 14, 5, 3, 24, 11, 12, 13, 10, 9, 8, 7, 18, 2, 17, 16, 20, 6, 1, 22, 19, 15, 21]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.95 MB (Resident Set Size)
+
+N is: 30
+Total cost: 4.79
+Tour: [0, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 12, 13, 10, 9, 8, 7, 18, 2, 17, 16, 20, 6, 1, 29, 22, 19, 28, 15, 21]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.01 seconds
+Memory usage: 351.23 MB (Resident Set Size)
+
+N is: 40
+Total cost: 5.19
+Tour: [0, 31, 35, 34, 33, 38, 36, 39, 37, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 12, 13, 10, 32, 9, 8, 7, 18, 2, 17, 16, 20, 6, 1, 29, 22, 19, 28, 15, 30, 21]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.13 MB (Resident Set Size)
+
+
+N is: 50
+Total cost: 5.83
+Tour: [0, 31, 48, 35, 34, 33, 38, 36, 39, 37, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 10, 32, 42, 9, 8, 7, 40, 18, 44, 2, 17, 16, 20, 41, 6, 1, 29, 22, 19, 49, 28, 15, 45, 43, 30, 21]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.10 MB (Resident Set Size)
+
+
+
+
+
+### China
+
+N is: 10
+Total cost: 3.54
+Tour: [0, 3, 6, 8, 9, 7, 2, 5, 4, 1]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.80 MB (Resident Set Size)
+
+N is: 20
+Total cost: 4.99
+Tour: [0, 3, 6, 8, 9, 15, 13, 17, 16, 18, 10, 12, 19, 14, 11, 7, 2, 5, 4, 1]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 352.08 MB (Resident Set Size)
+
+N is: 25
+Total cost: 5.60
+Tour: [0, 3, 6, 8, 9, 15, 13, 17, 16, 18, 12, 10, 7, 2, 24, 21, 23, 22, 19, 20, 14, 11, 5, 4, 1]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 351.61 MB (Resident Set Size)
+
+N is: 30
+Total cost: 5.53
+Tour: [0, 3, 6, 8, 15, 13, 17, 24, 25, 21, 18, 16, 9, 7, 2, 10, 12, 23, 26, 19, 22, 27, 29, 28, 20, 14, 11, 5, 4, 1]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.32 MB (Resident Set Size)
+
+N is: 40
+Total cost: 6.06
+Tour: [0, 3, 6, 8, 9, 15, 13, 17, 16, 18, 12, 10, 7, 2, 24, 38, 37, 32, 30, 39, 36, 33, 25, 21, 23, 26, 29, 35, 31, 34, 28, 27, 22, 19, 20, 14, 11, 5, 4, 1]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.75 MB (Resident Set Size)
+
+
+N is: 50
+Total cost: 6.35
+Tour: [0, 3, 6, 8, 9, 15, 13, 17, 16, 18, 12, 10, 7, 2, 24, 38, 48, 41, 40, 47, 43, 46, 45, 42, 37, 32, 30, 39, 44, 49, 36, 33, 25, 21, 23, 26, 29, 35, 31, 34, 28, 27, 22, 19, 20, 14, 11, 5, 4, 1]
+Elapsed time: 0.00 seconds
+User CPU time: 0.00 seconds
+System CPU time: 0.00 seconds
+Memory usage: 350.17 MB (Resident Set Size)
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+# Held-Karp Algorithm
+
+### RocketFuel 
+
+n is 24 Tour: [0, 2, 4, 5, 6, 20, 10, 3, 8, 16, 9, 15, 7, 23, 22, 19, 12, 14, 13, 18, 17, 21, 1, 11, 0]
+Tour cost: 2.808236386744995
+Coordinates have been written to points24_RocketFuel.txt
+Elapsed time: 39820 milliseconds
+Used heap memory: 3822 MB
+Max heap memory: 4024 MB
+CPU Load: 4.155019316518602 %
+
+n is 23 Tour: [0, 2, 4, 5, 6, 20, 10, 3, 8, 16, 9, 15, 7, 22, 19, 12, 14, 13, 18, 17, 21, 1, 11, 0]
+Tour cost: 2.805403928393439
+Coordinates have been written to points23_RocketFuel.txt
+Elapsed time: 15141 milliseconds
+Used heap memory: 2008 MB
+Max heap memory: 4024 MB
+CPU Load: 4.520976172068498 %
+
+n is 22 Tour: [0, 11, 1, 21, 17, 18, 13, 14, 12, 19, 7, 15, 9, 16, 8, 3, 10, 20, 6, 5, 4, 2, 0]
+Tour cost: 2.7346958061167936
+Coordinates have been written to points22_RocketFuel.txt
+Elapsed time: 6243 milliseconds
+Used heap memory: 985 MB
+Max heap memory: 4024 MB
+CPU Load: 4.462143885220808 %
+
+n is 21 Tour: [0, 11, 1, 17, 18, 13, 14, 12, 19, 7, 15, 9, 16, 8, 3, 10, 20, 6, 5, 4, 2, 0]
+Tour cost: 2.7183927335066325
+Coordinates have been written to points21_RocketFuel.txt
+Elapsed time: 2578 milliseconds
+Used heap memory: 490 MB
+Max heap memory: 4024 MB
+CPU Load: 2.920831538774436 %
+
+n is 20 Tour: [0, 11, 1, 17, 18, 13, 14, 12, 19, 7, 15, 9, 16, 8, 3, 10, 6, 5, 4, 2, 0]
+Tour cost: 2.718249251835671
+Coordinates have been written to points20_RocketFuel.txt
+Elapsed time: 1077 milliseconds
+Used heap memory: 255 MB
+Max heap memory: 4024 MB
+CPU Load: 3.3683163979774147 %
+
+n is 10 Tour: [0, 1, 7, 9, 8, 3, 6, 5, 4, 2, 0]
+Tour cost: 2.5922951674772925
+Coordinates have been written to points10_RocketFuel.txt
+Elapsed time: 40 milliseconds
+Used heap memory: 2 MB
+Max heap memory: 4024 MB
+CPU Load: -100.0 %
+
+
+### Berlin
+
+n is :10
+Tour: [0, 4, 5, 3, 9, 8, 7, 2, 6, 1, 0]
+Tour cost: 2.95745482218567
+Elapsed time: 49 milliseconds
+Used heap memory: 2 MB
+Max heap memory: 4024 MB
+CPU Load: -100.0 %
+
+n is :20
+Tour: [0, 18, 7, 8, 9, 14, 4, 5, 3, 11, 10, 12, 13, 15, 19, 1, 6, 16, 2, 17, 0]
+Tour cost: 3.9092223783442166
+Elapsed time: 1171 milliseconds
+Used heap memory: 255 MB
+Max heap memory: 4024 MB
+CPU Load: 2.8839395666541647 %
+
+n is :21
+Tour: [0, 20, 6, 1, 19, 15, 13, 12, 10, 11, 3, 5, 4, 14, 9, 8, 7, 18, 2, 16, 17, 0]
+Tour cost: 3.943420604881644
+Elapsed time: 2712 milliseconds
+Used heap memory: 486 MB
+Max heap memory: 4024 MB
+CPU Load: 2.8363708974731336 %
+
+n is :22
+Tour: [0, 20, 6, 1, 19, 15, 13, 12, 10, 11, 3, 5, 4, 14, 9, 8, 7, 18, 2, 16, 17, 21, 0]
+Tour cost: 3.9442648969790386
+Elapsed time: 6036 milliseconds
+Used heap memory: 990 MB
+Max heap memory: 4024 MB
+CPU Load: 4.30634323975234411 %
+
+n is :23
+Tour: [0, 20, 6, 1, 22, 19, 15, 13, 12, 10, 11, 3, 5, 4, 14, 9, 8, 7, 18, 2, 16, 17, 21, 0]
+Tour cost: 3.987276740709149
+Elapsed time: 17869 milliseconds
+Used heap memory: 2011 MB
+Max heap memory: 4024 MB
+CPU Load: 2.2095223981229877 %
+
+n is :24
+Tour: [0, 21, 17, 16, 2, 18, 7, 8, 9, 14, 4, 23, 5, 3, 11, 10, 12, 13, 15, 19, 22, 1, 6, 20, 0]
+Tour cost: 4.0324312246290335
+Elapsed time: 37628 milliseconds
+Used heap memory: 3825 MB
+Max heap memory: 4024 MB
+CPU Load: 3.859595213064477 %
+
+
+### China
+
+n is :20
+Tour: [0, 1, 2, 4, 5, 11, 10, 12, 14, 19, 18, 16, 17, 15, 13, 9, 8, 7, 6, 3, 0]
+Tour cost: 4.164089660681499
+Elapsed time: 1187 milliseconds
+Used heap memory: 254 MB
+Max heap memory: 4024 MB
+CPU Load: 2.9339593448060377 %
+
+n is :21
+Tour: [0, 3, 6, 7, 8, 9, 13, 15, 17, 16, 18, 19, 20, 14, 12, 10, 11, 5, 4, 2, 1, 0]
+Tour cost: 4.160438513500817
+Elapsed time: 3296 milliseconds
+Used heap memory: 493 MB
+Max heap memory: 4024 MB
+CPU Load: 3.3147635857574422 %
+
+n is :22
+Tour: [0, 3, 6, 7, 8, 9, 13, 15, 17, 16, 18, 21, 19, 20, 14, 12, 10, 11, 5, 4, 2, 1, 0]
+Tour cost: 4.300960129210954
+Elapsed time: 6780 milliseconds
+Used heap memory: 992 MB
+Max heap memory: 4024 MB
+CPU Load: 3.853974687340908 %
+
+n is :23
+Tour: [0, 3, 6, 7, 8, 9, 13, 15, 17, 16, 18, 21, 22, 20, 19, 14, 12, 10, 11, 5, 4, 2, 1, 0]
+Tour cost: 4.314692986641062
+Elapsed time: 15569 milliseconds
+Used heap memory: 2016 MB
+Max heap memory: 4024 MB
+CPU Load: 8.614169026259846 %
+
+n is :24
+Tour: [0, 3, 6, 7, 8, 9, 13, 15, 17, 16, 18, 21, 23, 22, 20, 19, 14, 12, 10, 11, 5, 4, 2, 1, 0]
+Tour cost: 4.272652826205297
+Elapsed time: 38609 milliseconds
+Used heap memory: 3823 MB
+Max heap memory: 4024 MB
+CPU Load: 8.90707230091482 %
+
+
+
+
+
+
+
+
+
+
+
+
+------
+
+
+# Attention Model 
+
+### RocketFuel
+
+N is: 10 Total cost: 2.59 Elapsed time: 0.01 seconds User CPU time: 8.81 seconds System CPU time: 6.36 seconds Memory usage: 468.85 MB (Resident Set Size) CPU percentage usage: 24.70%
+
+N is: 20 Total cost: 2.72 Elapsed time: 0.00 seconds User CPU time: 9.29 seconds System CPU time: 6.75 seconds Memory usage: 468.85 MB (Resident Set Size) CPU percentage usage: 22.40%
+
+N is: 25 Total cost: 2.83 Elapsed time: 0.00 seconds User CPU time: 9.86 seconds System CPU time: 7.12 seconds Memory usage: 471.70 MB (Resident Set Size) CPU percentage usage: 16.80%
+
+N is: 30 Total cost: 2.95 Elapsed time: 0.00 seconds User CPU time: 10.90 seconds System CPU time: 7.65 seconds Memory usage: 475.56 MB (Resident Set Size) CPU percentage usage: 16.60%
+
+N is: 40 Total cost: 3.41 Elapsed time: 0.01 seconds User CPU time: 11.69 seconds System CPU time: 8.15 seconds Memory usage: 478.14 MB (Resident Set Size) CPU percentage usage: 26.80%
+
+N is: 50 Total cost: 3.61 Elapsed time: 0.00 seconds User CPU time: 12.02 seconds System CPU time: 8.59 seconds Memory usage: 482.62 MB (Resident Set Size) CPU percentage usage: 18.50%
+
+
+
+
+### Berlin
+
+N is: 10 Total cost: 2.96 Elapsed time: 0.00 seconds User CPU time: 12.37 seconds System CPU time: 9.01 seconds Memory usage: 485.54 MB (Resident Set Size) CPU percentage usage: 24.20%
+
+N is: 20 Total cost: 3.91 Elapsed time: 0.00 seconds User CPU time: 12.67 seconds System CPU time: 9.35 seconds Memory usage: 489.77 MB (Resident Set Size) CPU percentage usage: 17.00%
+
+N is: 25 Total cost: 4.08 Elapsed time: 0.00 seconds User CPU time: 13.13 seconds System CPU time: 9.60 seconds Memory usage: 492.93 MB (Resident Set Size) CPU percentage usage: 19.70%
+
+N is: 30 Total cost: 4.49 Elapsed time: 0.00 seconds User CPU time: 13.54 seconds System CPU time: 10.04 seconds Memory usage: 497.34 MB (Resident Set Size) CPU percentage usage: 16.80%
+
+N is: 40 Total cost: 5.28 Elapsed time: 0.01 seconds User CPU time: 14.02 seconds System CPU time: 10.41 seconds Memory usage: 501.47 MB (Resident Set Size) CPU percentage usage: 16.30%
+
+N is: 50 Total cost: 5.94 Elapsed time: 0.00 seconds User CPU time: 15.57 seconds System CPU time: 11.17 seconds Memory usage: 508.45 MB (Resident Set Size) CPU percentage usage: 17.60%
+
+
+### China
+
+N is: 10 Total cost: 3.17 Elapsed time: 0.01 seconds User CPU time: 16.25 seconds System CPU time: 11.59 seconds Memory usage: 511.67 MB (Resident Set Size) CPU percentage usage: 25.80%
+
+N is: 20 Total cost: 4.17 Elapsed time: 0.00 seconds User CPU time: 17.19 seconds System CPU time: 12.13 seconds Memory usage: 514.59 MB (Resident Set Size) CPU percentage usage: 17.20%
+
+N is: 25 Total cost: 4.46 Elapsed time: 0.01 seconds User CPU time: 17.56 seconds System CPU time: 12.42 seconds Memory usage: 517.93 MB (Resident Set Size) CPU percentage usage: 25.60%
+
+N is: 30 Total cost: 4.58 Elapsed time: 0.01 seconds User CPU time: 18.52 seconds System CPU time: 12.99 seconds Memory usage: 520.84 MB (Resident Set Size) CPU percentage usage: 14.50%
+
+N is: 40 Total cost: 5.18 Elapsed time: 0.01 seconds User CPU time: 18.82 seconds System CPU time: 13.25 seconds Memory usage: 520.84 MB (Resident Set Size) CPU percentage usage: 17.40%
+
+N is: 50 Total cost: 5.61 Elapsed time: 0.01 seconds User CPU time: 20.02 seconds System CPU time: 13.61 seconds Memory usage: 520.84 MB (Resident Set Size) CPU percentage usage: 18.50%
